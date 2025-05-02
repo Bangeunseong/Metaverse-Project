@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236625cb4d77e7b4e8d08a8dd3d2e20e, type: 3}
+  m_Name: CharacterTable
+  m_EditorClassIdentifier: 
+  chracters:
+  - id: 0
+    characterSprite: {fileID: 21300000, guid: 117c0e2a275efd94ea2bb7eab972389f, type: 3}
+    controller: {fileID: 9100000, guid: 694e37fa72942d040b88de54a0aa57f7, type: 2}
+    idleClip: {fileID: 7400000, guid: df66d45e22502cf44a5cb03688f4bd25, type: 2}
+    damageClip: {fileID: 7400000, guid: a1c37991d7360cf48b1a24a47744135d, type: 2}
+    moveClip: {fileID: 7400000, guid: c931c36a3453a6a4fbac04bbb0991bb4, type: 2}
+  - id: 1
+    characterSprite: {fileID: 21300000, guid: fd05d94a9d09d6b41b32b0d3c9267cf0, type: 3}
+    controller: {fileID: 9100000, guid: 694e37fa72942d040b88de54a0aa57f7, type: 2}
+    idleClip: {fileID: 7400000, guid: 2bc0cba8fb68e5b4fadc2ac4d4c81812, type: 2}
+    damageClip: {fileID: 7400000, guid: 3a920e25f50289249a96c6520b9489a6, type: 2}
+    moveClip: {fileID: 7400000, guid: 4f6f18a377c135e45bf2713377319be7, type: 2}
+  - id: 2
+    characterSprite: {fileID: 21300000, guid: 2d732afd517de744eaa0b235f629bbd9, type: 3}
+    controller: {fileID: 9100000, guid: 9ba3be7705952a442b063f07573a311c, type: 2}
+    idleClip: {fileID: 7400000, guid: cc3923dfcce052b428225e53edd082ee, type: 2}
+    damageClip: {fileID: 7400000, guid: 0b2dd7895925d58438e552d0e868ec18, type: 2}
+    moveClip: {fileID: 7400000, guid: b5482e3fc620b204e91ac16671de361e, type: 2}

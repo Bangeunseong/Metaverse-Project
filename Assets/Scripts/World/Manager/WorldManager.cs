@@ -1,0 +1,64 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Tilemaps;
+
+public class WorldManager : MonoBehaviour
+{
+    // Fields
+    [SerializeField] private List<InteractHandler> handlers = new();
+    [SerializeField] private GameObject cameraBoundary;
+
+    private WorldUIManager uiManager;
+    private Camera cam;
+    private CameraController camController;
+    private Tilemap currentCameraBoundary;
+    
+    // Properties
+    public bool IsWorldActive { get; private set; } = false;
+    public PlayerController PlayerController { get; private set; }
+
+    // Singleton
+    private static WorldManager instance;
+    public static WorldManager Instance
+    { 
+        get { 
+            if (instance == null) 
+                instance = Helper.GetComponent_Helper<WorldManager>(GameObject.FindWithTag(nameof(WorldManager))); 
+            return instance; 
+        } 
+    }
+
+    /// <summary>
+    /// Awake is called once when scripts being loaded.
+    /// </summary>
+    private void Awake()
+    {
+        if (Instance != this) Destroy(gameObject);
+
+        cam = Camera.main;
+        camController = Helper.GetComponent_Helper<CameraController>(cam.gameObject);
+        currentCameraBoundary = Helper.GetComponent_Helper<Tilemap>(cameraBoundary);
+        
+        PlayerController = FindFirstObjectByType<PlayerController>();
+        uiManager = FindFirstObjectByType<WorldUIManager>();
+    }
+
+    /// <summary>
+    /// Start is called before the first frame update
+    /// </summary>
+    void Start()
+    {
+        PlayerController.Init(this);
+        PlayerController.transform.position = GlobalGameManager.Instance.WorldSpawnPosition;
+
+        camController.SetCameraBoundsFromTilemap(currentCameraBoundary);
+    }
+
+    /// <summary>
+    /// Go to base world
+    /// </summary>
+    public void StartWorld() { IsWorldActive = true; uiManager.GoToWorld();  }
+
+    public void AddHandler(InteractHandler handler) { handlers.Add(handler); }
+}

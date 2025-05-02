@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class AnimationHandler : MonoBehaviour
@@ -12,6 +13,17 @@ public class AnimationHandler : MonoBehaviour
     private void Awake()
     {
         animator = Helper.GetComponentInChildren_Helper<Animator>(gameObject);
+    }
+
+    public void ChangeAnimationClips(CharacterData characterData)
+    {
+        var overrideController = new AnimatorOverrideController(characterData.controller);
+
+        overrideController["Idle"] = characterData.idleClip;
+        overrideController["Move"] = characterData.moveClip;
+        overrideController["Damage"] = characterData.damageClip;
+
+        animator.runtimeAnimatorController = overrideController;
     }
 
     public void Move(Vector2 obj)

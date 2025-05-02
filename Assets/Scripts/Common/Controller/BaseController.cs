@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer characterRenderer;
     [SerializeField] private Transform weaponPivot;
+    protected CharacterData characterData;
 
+    protected SpriteRenderer characterRenderer;
     protected Rigidbody2D rigidBody;
     protected AnimationHandler animationHandler;
     protected StatHandler statHandler;
@@ -27,6 +28,7 @@ public class BaseController : MonoBehaviour
         rigidBody = Helper.GetComponent_Helper<Rigidbody2D>(gameObject);
         animationHandler = Helper.GetComponent_Helper<AnimationHandler>(gameObject);
         statHandler = Helper.GetComponent_Helper<StatHandler>(gameObject);
+        characterRenderer = Helper.GetComponentInChildren_Helper<SpriteRenderer>(gameObject);
     }
 
     protected virtual void Start() { }

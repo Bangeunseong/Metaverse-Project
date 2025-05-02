@@ -12,7 +12,7 @@ public abstract class InteractHandler : MonoBehaviour
 
     private void Start()
     {
-        WorldManager.handlers.Add(this);    
+        WorldManager.Instance.AddHandler(this);  
     }
 
     protected virtual void Update()
