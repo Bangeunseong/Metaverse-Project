@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,6 +43,11 @@ public class WorldUI : BaseWorldUI
         if(!currentCoinPanel.activeInHierarchy) 
             currentCoinPanel.SetActive(true);
         else currentCoinPanel.SetActive(false);
+    }
+
+    public void UpdateCoinUI()
+    {
+        remainCoinUI.UpdateCoinUI();
     }
 
     public void OnClickExitBtn()

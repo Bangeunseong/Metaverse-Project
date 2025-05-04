@@ -13,7 +13,17 @@ public class PlayerController : BaseController
         this.worldManager = worldManager;
         cam = Camera.main;
         camController = Helper.GetComponent_Helper<CameraController>(cam.gameObject);
+    }
+
+    protected override void Start()
+    {
         ChangeCharacter(GlobalGameManager.Instance.GetCurrentCharacterData());
+    }
+
+    protected override void Update()
+    {
+        if (!worldManager.IsWorldActive) return;
+        base.Update();
     }
 
     public void ChangeCharacter(CharacterData characterData)
@@ -27,15 +37,11 @@ public class PlayerController : BaseController
 
     void OnMove(InputValue inputValue)
     {
-        if (!worldManager.IsWorldActive) return;
-
         movementDirection = inputValue.Get<Vector2>().normalized;
     }
 
     void OnLook(InputValue inputValue)
     {
-        if (!worldManager.IsWorldActive) return;
-
         Vector2 mousePosition = inputValue.Get<Vector2>();
         Vector2 worldPos = cam.ScreenToWorldPoint(mousePosition);
         
@@ -50,11 +56,6 @@ public class PlayerController : BaseController
         if (!worldManager.IsWorldActive) return;
 
         isInteractable = inputValue.Get<float>() > 0f;
-    }
-
-    void OnFire()
-    {
-
     }
 
     void OnZoom(InputValue inputValue)

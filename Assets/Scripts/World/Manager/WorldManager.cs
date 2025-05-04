@@ -41,6 +41,8 @@ public class WorldManager : MonoBehaviour
         currentCameraBoundary = Helper.GetComponent_Helper<Tilemap>(cameraBoundary);
         
         PlayerController = FindFirstObjectByType<PlayerController>();
+        PlayerController.Init(this);
+        
         uiManager = FindFirstObjectByType<WorldUIManager>();
     }
 
@@ -49,16 +51,21 @@ public class WorldManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        PlayerController.Init(this);
         PlayerController.transform.position = GlobalGameManager.Instance.WorldSpawnPosition;
-
         camController.SetCameraBoundsFromTilemap(currentCameraBoundary);
+
+        if (!GlobalGameManager.Instance.IsFirstLoadingInWorld) { StartWorld(); }
+        else GlobalGameManager.Instance.IsFirstLoadingInWorld = false;
     }
 
     /// <summary>
     /// Go to base world
     /// </summary>
-    public void StartWorld() { IsWorldActive = true; uiManager.GoToWorld();  }
+    public void StartWorld() { IsWorldActive = true;  uiManager.GoToWorld();  }
 
+    /// <summary>
+    /// Add Event handler of specific tiles
+    /// </summary>
+    /// <param name="handler"></param>
     public void AddHandler(InteractHandler handler) { handlers.Add(handler); }
 }

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class InteractHandler : MonoBehaviour
 {
-    [SerializeField] private LayerMask target;
-    [SerializeField] private GameObject uiCanvas;
+    [SerializeField] protected LayerMask target;
+    [SerializeField] protected GameObject uiCanvas;
 
-    private bool isPlayerInRange = false;
-    private PlayerController controller;
+    protected bool isPlayerInRange = false;
+    protected PlayerController controller;
 
     private void Start()
     {

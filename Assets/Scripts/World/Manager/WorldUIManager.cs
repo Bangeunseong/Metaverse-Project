@@ -4,13 +4,14 @@ using UnityEngine;
 
 public enum UIState
 {
-    Intro, World, GameIntro, Game, GameOver,
+    Intro, World, Reward, GameIntro, Game, PauseGame, GameOver,
 }
 
 public class WorldUIManager : MonoBehaviour
 {
     private IntroUI introUI;
     private WorldUI worldUI;
+    private RewardUI rewardUI;
     private UIState currentState;
 
     /// <summary>
@@ -20,9 +21,11 @@ public class WorldUIManager : MonoBehaviour
     {
         introUI = Helper.GetComponentInChildren_Helper<IntroUI>(gameObject, true);
         worldUI = Helper.GetComponentInChildren_Helper<WorldUI>(gameObject, true);
+        rewardUI = Helper.GetComponentInChildren_Helper<RewardUI>(gameObject, true);
 
         introUI.Init(this);
         worldUI.Init(this);
+        rewardUI.Init(this);
 
         ChangeState(UIState.Intro);
     }
@@ -32,9 +35,13 @@ public class WorldUIManager : MonoBehaviour
     /// </summary>
     public void GoToWorld()
     {
-        if (!GlobalGameManager.Instance.IsFirstLoadingInWorld)
+        if (GlobalGameManager.Instance.IsFirstLoadingInWorld && !GlobalGameManager.Instance.IsGameNormallyEnded)
+        {
             GlobalGameManager.Instance.IsFirstLoadingInWorld = false;
-        ChangeState(UIState.World);
+            ChangeState(UIState.World);
+        }
+        else if (!GlobalGameManager.Instance.IsGameNormallyEnded) ChangeState(UIState.World);
+        else { rewardUI.ChangeGainedCoinText(); GlobalGameManager.Instance.ResetGainedCoin(); ChangeState(UIState.Reward); }
     }
 
     /// <summary>
@@ -46,5 +53,14 @@ public class WorldUIManager : MonoBehaviour
         currentState = state;
         introUI.SetActive(currentState);
         worldUI.SetActive(currentState);
+        rewardUI.SetActive(currentState);
+    }
+
+    /// <summary>
+    /// Update Remain Coin UI
+    /// </summary>
+    public void ChangeRemainCoin()
+    {
+        worldUI.UpdateCoinUI();
     }
 }

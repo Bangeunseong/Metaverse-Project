@@ -11,12 +11,18 @@ public class CustomCharacterUI : MonoBehaviour
     [SerializeField] private Button cancelBtn;
     [SerializeField] private Image spriteImage;
     private CharacterData currentCharacterData;
+    private GlobalGameManager globalGameManager;
+    private WorldManager worldManager;
     private int currentCharacterIndex;
+
 
     public void Init()
     {
-        currentCharacterIndex = GlobalGameManager.Instance.SelectedSkinIndex;
-        currentCharacterData = GlobalGameManager.Instance.GetCharacterDataById(currentCharacterIndex);
+        worldManager = WorldManager.Instance;
+        globalGameManager = GlobalGameManager.Instance;
+
+        currentCharacterIndex = globalGameManager.SelectedSkinIndex;
+        currentCharacterData = globalGameManager.GetCharacterDataById(currentCharacterIndex);
         spriteImage.sprite = currentCharacterData.characterSprite;
 
         prevBtn.onClick.AddListener(MoveToPrevCharacter);
@@ -27,30 +33,30 @@ public class CustomCharacterUI : MonoBehaviour
 
     public void MoveToNextCharacter()
     {
-        currentCharacterData = GlobalGameManager.Instance.GetCharacterDataById(++currentCharacterIndex);
+        currentCharacterData = globalGameManager.GetCharacterDataById(++currentCharacterIndex);
         if(currentCharacterData == null)
         {
             currentCharacterIndex = 0;
-            currentCharacterData = GlobalGameManager.Instance.GetCharacterDataById(currentCharacterIndex);
+            currentCharacterData = globalGameManager.GetCharacterDataById(currentCharacterIndex);
         }
         spriteImage.sprite = currentCharacterData.characterSprite;
     }
 
     public void MoveToPrevCharacter()
     {
-        currentCharacterData = GlobalGameManager.Instance.GetCharacterDataById(--currentCharacterIndex);
+        currentCharacterData = globalGameManager.GetCharacterDataById(--currentCharacterIndex);
         if (currentCharacterData == null)
         {
-            currentCharacterIndex = GlobalGameManager.Instance.GetCharacterDataCount() - 1;
-            currentCharacterData = GlobalGameManager.Instance.GetCharacterDataById(currentCharacterIndex);
+            currentCharacterIndex = globalGameManager.GetCharacterDataCount() - 1;
+            currentCharacterData = globalGameManager.GetCharacterDataById(currentCharacterIndex);
         }
         spriteImage.sprite = currentCharacterData.characterSprite;
     }
 
     public void ApplySelectedCharacter()
     {
-        GlobalGameManager.Instance.SelectedSkinIndex = currentCharacterIndex;
-        WorldManager.Instance.PlayerController.ChangeCharacter(currentCharacterData);
+        globalGameManager.SelectedSkinIndex = currentCharacterIndex;
+        worldManager.PlayerController.ChangeCharacter(currentCharacterData);
         gameObject.SetActive(false);
     }
 

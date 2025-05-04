@@ -19,6 +19,7 @@ public class CameraController : MonoBehaviour
     private float currentZoom;
     private float newZoom;
     private float scroll = 0f;
+    private WorldManager worldManager;
 
     public bool IsCameraReady { get; set; } = false;
     public float Scroll { get => scroll; set => scroll = value; }
@@ -33,17 +34,18 @@ public class CameraController : MonoBehaviour
     {
         currentZoom = cam.orthographicSize;
         newZoom = cam.orthographicSize;
+        worldManager = WorldManager.Instance;
     }
 
     private void Update()
     {
-        if (!WorldManager.Instance.IsWorldActive) return;
+        if (!worldManager.IsWorldActive) return;
         CalculateCamPosition_Zoom();
     }
 
     private void LateUpdate()
     {
-        if (!WorldManager.Instance.IsWorldActive) return;
+        if (!worldManager.IsWorldActive) return;
         ChangeCamPositionNZoom();
     }
 
