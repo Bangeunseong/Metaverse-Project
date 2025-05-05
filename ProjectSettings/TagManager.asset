@@ -8,6 +8,7 @@ TagManager:
   - GlobalGameManager
   - ProjectileManager
   - GameManager
+  - SoundManager
   layers:
   - Default
   - TransparentFX

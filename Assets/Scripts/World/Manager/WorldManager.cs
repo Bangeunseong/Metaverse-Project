@@ -8,6 +8,7 @@ public class WorldManager : MonoBehaviour
     // Fields
     [SerializeField] private List<InteractHandler> handlers = new();
     [SerializeField] private GameObject cameraBoundary;
+    [SerializeField] private AudioClip worldMusic;
 
     private WorldUIManager uiManager;
     private Camera cam;
@@ -53,6 +54,7 @@ public class WorldManager : MonoBehaviour
     {
         PlayerController.transform.position = GlobalGameManager.Instance.WorldSpawnPosition;
         camController.SetCameraBoundsFromTilemap(currentCameraBoundary);
+        SoundManager.Instance.ChangeBackgroundMusic(worldMusic);
 
         if (!GlobalGameManager.Instance.IsFirstLoadingInWorld) { StartWorld(); }
         else GlobalGameManager.Instance.IsFirstLoadingInWorld = false;

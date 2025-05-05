@@ -15188,6 +15188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWaveIndex: 0
+  gameMusic: {fileID: 8300000, guid: 9da6b47c0d5de424c9b11c5b703976b1, type: 3}
 --- !u!4 &1562263503
 Transform:
   m_ObjectHideFlags: 0
@@ -15530,7 +15531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.5
-  damageClip: {fileID: 0}
+  damageClip: {fileID: 8300000, guid: 23b08820dc0fc53498bf58b8719cce3f, type: 3}
 --- !u!1 &1715437569
 GameObject:
   m_ObjectHideFlags: 0

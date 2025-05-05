@@ -12,6 +12,7 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private float power = 1f;
     [SerializeField] private float speed = 1f;
     [SerializeField] private float attackRange = 10f;
+    [SerializeField] private AudioClip attackClip;
 
     public float Delay { get { return delay; } set { delay = value; } }
     public float WeaponSize { get { return weaponSize; } set { weaponSize = value; } }
@@ -40,6 +41,8 @@ public class WeaponHandler : MonoBehaviour
     public virtual void Attack()
     {
         AttackAnimation();
+
+        if (attackClip != null) { SoundManager.PlayClip(attackClip); }
     }
 
     public void AttackAnimation()

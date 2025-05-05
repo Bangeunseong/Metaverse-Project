@@ -157,6 +157,7 @@ MonoBehaviour:
   power: 5
   speed: 3
   attackRange: 30
+  attackClip: {fileID: 8300000, guid: caba391d3d321fb448d6fd93ea58fe7d, type: 3}
   target:
     serializedVersion: 2
     m_Bits: 64
@@ -166,7 +167,7 @@ MonoBehaviour:
   duration: 10
   spread: 2
   numberOfProjectilesPerShot: 2
-  multipleProjectileAngle: 2
+  multipleProjectileAngle: 10
   projectileColor: {r: 1, g: 0.2783019, b: 0.30808553, a: 1}
 --- !u!1 &8085253157663323683
 GameObject:

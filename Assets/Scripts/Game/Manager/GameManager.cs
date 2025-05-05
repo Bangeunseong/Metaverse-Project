@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int currentWaveIndex = 0;
+    [SerializeField] private AudioClip gameMusic;
 
     private ResourceController playerResourceController;
     private GameUIManager gameUIManager;
@@ -57,6 +58,8 @@ public class GameManager : MonoBehaviour
         // Initialize Player HP Sprites
         gameUIManager.SetPlayerHP(playerResourceController.MaxHealth);
         UpdateScore(0);
+
+        SoundManager.Instance.ChangeBackgroundMusic(gameMusic);
     }
 
     public void StartGame() { IsGameActive = true; gameUIManager.SetPlayGame(); StartNextWave(); }

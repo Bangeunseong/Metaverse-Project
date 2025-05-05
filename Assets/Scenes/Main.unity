@@ -1108,7 +1108,7 @@ Tilemap:
       - {fileID: 21300000, guid: 53c1a41f459aa7247b217932189d4bf2, type: 3}
       - {fileID: 21300000, guid: c75e951ff9b050340907e6096fc79174, type: 3}
       - {fileID: 21300000, guid: ccb5ae000563bb14d878eb8dbc6a8d9c, type: 3}
-      m_AnimationSpeed: 1.7381773
+      m_AnimationSpeed: 1.0492405
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -5, y: 4, z: 0}
@@ -1118,7 +1118,7 @@ Tilemap:
       - {fileID: 21300000, guid: 53c1a41f459aa7247b217932189d4bf2, type: 3}
       - {fileID: 21300000, guid: c75e951ff9b050340907e6096fc79174, type: 3}
       - {fileID: 21300000, guid: ccb5ae000563bb14d878eb8dbc6a8d9c, type: 3}
-      m_AnimationSpeed: 1.731682
+      m_AnimationSpeed: 1.0574509
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 1, y: 4, z: 0}
@@ -1128,7 +1128,7 @@ Tilemap:
       - {fileID: 21300000, guid: 310069715f876c7469860752cd2c0868, type: 3}
       - {fileID: 21300000, guid: d7cf9249fc611e34eac82aa938276419, type: 3}
       - {fileID: 21300000, guid: 13129bdca6e47a84c9e7a048f3936997, type: 3}
-      m_AnimationSpeed: 1.2939262
+      m_AnimationSpeed: 1.6071575
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -2932,9 +2932,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 762060397}
+  - component: {fileID: 762060399}
+  - component: {fileID: 762060398}
   m_Layer: 0
   m_Name: SoundManager
-  m_TagString: Untagged
+  m_TagString: SoundManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2954,6 +2956,118 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1114609582}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &762060398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762060396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c09c2ec8468e644c98fe399d30294d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffectVolume: 0.5
+  soundEffectPicthVariance: 0.2
+  musicVolume: 0.5
+  soundSourcePrefab: {fileID: 9093817445521415121, guid: 4bde98c335e47714b898f522dbf6c1ab, type: 3}
+--- !u!82 &762060399
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762060396}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &858338895
 GameObject:
   m_ObjectHideFlags: 0
@@ -8577,7 +8691,7 @@ Tilemap:
       - {fileID: 21300000, guid: 5d5ff8897d6acbe4abadde3009421f7d, type: 3}
       - {fileID: 21300000, guid: 2b22ebc0bd20709438ade4abe49b6df0, type: 3}
       - {fileID: 21300000, guid: 698ed894e1ac2794eb557297065bfb5b, type: 3}
-      m_AnimationSpeed: 1.2792606
+      m_AnimationSpeed: 1.8758674
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -9994,6 +10108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handlers: []
   cameraBoundary: {fileID: 1461887180}
+  worldMusic: {fileID: 8300000, guid: 2ca0ad841c0d6ac4a9494093c1b47999, type: 3}
 --- !u!4 &1470073542
 Transform:
   m_ObjectHideFlags: 0
