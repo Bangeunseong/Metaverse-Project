@@ -8,6 +8,7 @@ public class RewardUI : BaseWorldUI
 {
     [SerializeField] private Button confirmBtn;
     [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private TextMeshProUGUI scoreText;
 
     public override void Init(WorldUIManager uiManager)
     {
@@ -19,6 +20,11 @@ public class RewardUI : BaseWorldUI
     public void OnClickConfirmBtn()
     {
         uiManager.ChangeState(UIState.World);
+    }
+
+    public void ChangeGainedScoreText()
+    {
+        scoreText.text = GlobalGameManager.Instance.GainedScore.ToString();
     }
 
     public void ChangeGainedCoinText()

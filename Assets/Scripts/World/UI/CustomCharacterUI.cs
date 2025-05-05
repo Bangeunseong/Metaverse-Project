@@ -55,7 +55,7 @@ public class CustomCharacterUI : MonoBehaviour
 
     public void ApplySelectedCharacter()
     {
-        globalGameManager.SelectedSkinIndex = currentCharacterIndex;
+        globalGameManager.UpdateSkinIndex(currentCharacterIndex);
         worldManager.PlayerController.ChangeCharacter(currentCharacterData);
         gameObject.SetActive(false);
     }

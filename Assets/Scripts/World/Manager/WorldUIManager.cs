@@ -41,7 +41,14 @@ public class WorldUIManager : MonoBehaviour
             ChangeState(UIState.World);
         }
         else if (!GlobalGameManager.Instance.IsGameNormallyEnded) ChangeState(UIState.World);
-        else { rewardUI.ChangeGainedCoinText(); GlobalGameManager.Instance.ResetGainedCoin(); ChangeState(UIState.Reward); }
+        else 
+        { 
+            rewardUI.ChangeGainedCoinText(); 
+            rewardUI.ChangeGainedScoreText();
+            GlobalGameManager.Instance.IsGameNormallyEnded = false;
+            GlobalGameManager.Instance.ResetGainedCoinNScore();
+            ChangeState(UIState.Reward);
+        }
     }
 
     /// <summary>

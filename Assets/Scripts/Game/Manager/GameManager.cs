@@ -52,40 +52,44 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Set max score
-        MaxScore = PlayerPrefs.GetInt(GlobalGameManager.ScoreKey, 0);
+        MaxScore = GlobalGameManager.Instance.MaxScore;
         
         // Initialize Player HP Sprites
         gameUIManager.SetPlayerHP(playerResourceController.MaxHealth);
         UpdateScore(0);
     }
 
-
     public void StartGame() { IsGameActive = true; gameUIManager.SetPlayGame(); StartNextWave(); }
-    public void PauseGame() { IsGameActive = false; gameUIManager.SetGamePause(); }
     public void ContinueGame() { IsGameActive = true; gameUIManager.SetPlayGame(); }
-    public void EndOfWave() { StartNextWave(); }
+    public void PauseGame() { IsGameActive = false; gameUIManager.SetGamePause(); }
     public void GameOver()
     {
         // Stops Game
         IsGameActive = false;
         
         // Update Best score and UI
-        if (CurrentScore > MaxScore) { MaxScore = CurrentScore; PlayerPrefs.SetInt(GlobalGameManager.ScoreKey, CurrentScore); }
+        if (CurrentScore > MaxScore) { MaxScore = CurrentScore; }
+        GlobalGameManager.Instance.UpdateGameScore(CurrentScore);
         gameUIManager.ChangeScoreInGameOverUI(CurrentScore, MaxScore);
 
-        // Update Coins and stop spawning enemy
+        // Update Coins
         GlobalGameManager.Instance.UpdateCurrentCoin(CurrentScore / 10, true);
+
+        // Stop spawning enemies
         enemyManager.StopWave();
 
         // Change UI to GameOverUI
         gameUIManager.SetGameOver();
     }
+
     public void UpdateScore(int score)
     {
         CurrentScore += score;
         gameUIManager.ChangeScoreInGameUI(CurrentScore);
     }
-
+    
+    public void EndOfWave() { StartNextWave(); }
+    
     private void StartNextWave()
     {
         currentWaveIndex++;
