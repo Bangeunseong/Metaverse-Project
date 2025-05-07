@@ -65,17 +65,17 @@ public class GlobalGameManager : MonoBehaviour
     /// Returns single character data by id
     /// </summary>
     /// <param name="id"></param>
-    /// <returns>Returns Character data by id. If character data not found, returns null value.</returns>
+    /// <returns>Returns Character data by id. If character data is not found, it returns a null value.</returns>
     public CharacterData GetCharacterDataById(int id) { return characterTable.GetCharacterDataById(id); }
 
     /// <summary>
-    /// Resets gained coin and score when reward has given to player
-    /// This method triggers when player moved scene like this ( MiniGame -> World )
+    /// Resets gained coin and score when reward has given to a player
+    /// This method triggers when the player moved scene like this (MiniGame -> World)
     /// </summary>
     public void ResetGainedCoinNScore() { GainedCoin = 0; GainedScore = 0; }
 
     /// <summary>
-    /// Updates earned score from mini game and max score of minigame
+    /// Updates earned score from mini-game and max score of minigame
     /// </summary>
     /// <param name="score"></param>
     public void UpdateGameScore(int score)

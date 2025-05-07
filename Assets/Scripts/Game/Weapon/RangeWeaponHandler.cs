@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RangeWeaponHandler : WeaponHandler
@@ -15,13 +13,13 @@ public class RangeWeaponHandler : WeaponHandler
     [SerializeField] private Color projectileColor;
     private ProjectileManager projectileManager;
 
-    public int BulletIndex { get { return bulletIndex; } }
-    public float BulletSize { get { return bulletSize; } }
-    public float Duration { get { return duration; } }
-    public float Spread { get { return spread; } }
-    public int NumberOfProjectilesPerShot { get { return numberOfProjectilesPerShot; } }
-    public float MultipleProjectileAngle { get { return multipleProjectileAngle; } }
-    public Color ProjectileColor { get { return projectileColor; } }
+    public int BulletIndex => bulletIndex;
+    public float BulletSize => bulletSize;
+    public float Duration => duration;
+    public float Spread => spread;
+    public int NumberOfProjectilesPerShot => numberOfProjectilesPerShot;
+    public float MultipleProjectileAngle => multipleProjectileAngle;
+    public Color ProjectileColor => projectileColor;
 
     protected override void Start()
     {

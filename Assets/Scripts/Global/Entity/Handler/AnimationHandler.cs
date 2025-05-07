@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class AnimationHandler : MonoBehaviour
 {
-    private static readonly int isMoving = Animator.StringToHash("IsMove_b");
-    private static readonly int isDamage = Animator.StringToHash("IsDamage_b");
+    private static readonly int IsMoving = Animator.StringToHash("IsMove_b");
+    private static readonly int IsDamage = Animator.StringToHash("IsDamage_b");
 
-    protected Animator animator;
+    private Animator animator;
 
     private void Awake()
     {
@@ -17,27 +17,28 @@ public class AnimationHandler : MonoBehaviour
 
     public void ChangeAnimationClips(CharacterData characterData)
     {
-        var overrideController = new AnimatorOverrideController(characterData.controller);
-
-        overrideController["Idle"] = characterData.idleClip;
-        overrideController["Move"] = characterData.moveClip;
-        overrideController["Damage"] = characterData.damageClip;
+        var overrideController = new AnimatorOverrideController(characterData.controller)
+        {
+            ["Idle"] = characterData.idleClip,
+            ["Move"] = characterData.moveClip,
+            ["Damage"] = characterData.damageClip
+        };
 
         animator.runtimeAnimatorController = overrideController;
     }
 
     public void Move(Vector2 obj)
     {
-        animator.SetBool(isMoving, obj.magnitude > .5f);
+        animator.SetBool(IsMoving, obj.magnitude > .5f);
     }
 
     public void Damage()
     {
-        animator.SetBool(isDamage, true);
+        animator.SetBool(IsDamage, true);
     }
 
     public void InvincibilityEnd()
     {
-        animator.SetBool(isDamage, false);
+        animator.SetBool(IsDamage, false);
     }
 }

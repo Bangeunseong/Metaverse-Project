@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class SoundManager : MonoBehaviour
 {
     [SerializeField][Range(0f, 1f)] private float soundEffectVolume;
-    [SerializeField][Range(0f, 1f)] private float soundEffectPicthVariance;
+    [FormerlySerializedAs("soundEffectPicthVariance")] [SerializeField][Range(0f, 1f)] private float soundEffectPitchVariance;
     [SerializeField][Range(0f, 1f)] private float musicVolume;
     [SerializeField] private SoundSource soundSourcePrefab;
     
@@ -51,6 +52,6 @@ public class SoundManager : MonoBehaviour
     {
         SoundSource obj = Instantiate(Instance.soundSourcePrefab);
         SoundSource soundSource = Helper.GetComponent_Helper<SoundSource>(obj.gameObject);
-        soundSource.Play(clip, Instance.soundEffectVolume, Instance.soundEffectPicthVariance);
+        soundSource.Play(clip, Instance.soundEffectVolume, Instance.soundEffectPitchVariance);
     }
 }

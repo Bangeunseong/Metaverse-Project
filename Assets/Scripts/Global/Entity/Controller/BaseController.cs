@@ -37,8 +37,7 @@ public class BaseController : MonoBehaviour
         statHandler = Helper.GetComponent_Helper<StatHandler>(gameObject);
         characterRenderer = Helper.GetComponentInChildren_Helper<SpriteRenderer>(gameObject);
 
-        if (weaponPrefab != null) weaponHandler = Instantiate(weaponPrefab, weaponPivot);
-        else weaponHandler = null;
+        weaponHandler = weaponPrefab != null ? Instantiate(weaponPrefab, weaponPivot) : null;
     }
 
     protected virtual void Start() { }

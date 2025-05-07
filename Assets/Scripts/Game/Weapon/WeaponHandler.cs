@@ -14,15 +14,15 @@ public class WeaponHandler : MonoBehaviour
     [SerializeField] private float attackRange = 10f;
     [SerializeField] private AudioClip attackClip;
 
-    public float Delay { get { return delay; } set { delay = value; } }
-    public float WeaponSize { get { return weaponSize; } set { weaponSize = value; } }
-    public float Power { get { return power; } set { power = value; } }
-    public float Speed { get { return speed; } set { speed = value; } }
-    public float AttackRange { get { return attackRange; } set { attackRange = value; } }
+    public float Delay { get => delay; set => delay = value; }
+    public float WeaponSize { get => weaponSize; set => weaponSize = value; }
+    public float Power { get => power; set => power = value; }
+    public float Speed { get => speed; set => speed = value; }
+    public float AttackRange { get => attackRange; set => attackRange = value; }
 
     public LayerMask target;
 
-    public BaseController Controller { get; private set; }
+    protected BaseController Controller { get; private set; }
     private Animator animator;
     private SpriteRenderer weaponRenderer;
 
@@ -51,7 +51,7 @@ public class WeaponHandler : MonoBehaviour
     /// <summary>
     /// Plays attack animation when player or enemy attacks
     /// </summary>
-    public void AttackAnimation()
+    private void AttackAnimation()
     {
         animator.SetTrigger(IsAttack);
     }

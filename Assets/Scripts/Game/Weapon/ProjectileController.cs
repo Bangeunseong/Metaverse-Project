@@ -42,9 +42,7 @@ public class ProjectileController : MonoBehaviour
         spriteRenderer.color = weaponHandler.ProjectileColor;
 
         transform.right = this.direction;
-
-        if (direction.x < 0) pivot.localRotation = Quaternion.Euler(180, 0, 0);
-        else pivot.localRotation = Quaternion.Euler(0, 0, 0);
+        pivot.localRotation = Quaternion.Euler(direction.x < 0 ? 180 : 0, 0, 0);
 
         isReady = true;
     }
