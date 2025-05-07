@@ -32,6 +32,10 @@ public class SoundManager : MonoBehaviour
         musicAudioSource.loop = true;
     }
 
+    /// <summary>
+    /// Changes background music clip
+    /// </summary>
+    /// <param name="clip"></param>
     public void ChangeBackgroundMusic(AudioClip clip)
     {
         musicAudioSource.Stop();
@@ -39,6 +43,10 @@ public class SoundManager : MonoBehaviour
         musicAudioSource.Play();
     }
 
+    /// <summary>
+    /// Plays selected clip
+    /// </summary>
+    /// <param name="clip"></param>
     public static void PlayClip(AudioClip clip)
     {
         SoundSource obj = Instantiate(Instance.soundSourcePrefab);
