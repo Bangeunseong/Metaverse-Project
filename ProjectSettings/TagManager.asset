@@ -9,6 +9,7 @@ TagManager:
   - ProjectileManager
   - GameManager
   - SoundManager
+  - ItemManager
   layers:
   - Default
   - TransparentFX

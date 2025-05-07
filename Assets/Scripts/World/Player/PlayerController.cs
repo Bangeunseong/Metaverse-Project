@@ -26,6 +26,12 @@ public class PlayerController : BaseController
         base.Update();
     }
 
+    protected override void FixedUpdate()
+    {
+        if (!worldManager.IsWorldActive) return;
+        base.FixedUpdate();
+    }
+
     public void ChangeCharacter(CharacterData characterData)
     {
         this.characterData = characterData;

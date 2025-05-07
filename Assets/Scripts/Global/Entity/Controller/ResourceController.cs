@@ -43,6 +43,16 @@ public class ResourceController : MonoBehaviour
 
     public bool ChangeHealth(float change)
     {
+        if (change > 0)
+        {
+            CurrentHealth += change;
+            CurrentHealth = CurrentHealth > MaxHealth ? MaxHealth : CurrentHealth;
+            CurrentHealth = CurrentHealth < 0 ? 0 : CurrentHealth;
+
+            OnChangeHealth?.Invoke(CurrentHealth);
+            return true;
+        }
+
         if (change == 0 || timeSinceLastChange < healthChangeDelay) { return false; }
 
         timeSinceLastChange = 0f;

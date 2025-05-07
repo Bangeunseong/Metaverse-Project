@@ -152,10 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5f53db8aa523354fbefbd83d6d02a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.6
+  delay: 0.8
   weaponSize: 0.5
   power: 1
-  speed: 3
+  speed: 6
   attackRange: 8
   attackClip: {fileID: 8300000, guid: 6c4758521a9b67e448babad56c982c2f, type: 3}
   target:

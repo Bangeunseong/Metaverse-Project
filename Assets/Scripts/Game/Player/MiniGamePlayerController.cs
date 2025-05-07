@@ -22,6 +22,7 @@ public class MiniGamePlayerController : BaseController
     {
         rigidBody.drag = drag;
         statHandler.Speed = speed;
+        
         ChangeCharacter(GlobalGameManager.Instance.GetCurrentCharacterData());
     }
 

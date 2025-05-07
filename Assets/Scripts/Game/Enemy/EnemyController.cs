@@ -13,15 +13,17 @@ public class EnemyController : BaseController
 
     private EnemyManager enemyManager;
     private GameManager gameManager;
+    private ItemManager itemManager;
     private Transform target;
     private Transform bossMovementTarget;
 
     public int Score { get { return score; } }
 
-    public void Init(EnemyManager enemyManager, GameManager gameManager, Transform bossMovementTarget)
+    public void Init(EnemyManager enemyManager, GameManager gameManager, ItemManager itemManager, Transform bossMovementTarget)
     {
         this.enemyManager = enemyManager;
         this.gameManager = gameManager;
+        this.itemManager = itemManager;
         this.bossMovementTarget = bossMovementTarget;
 
         target = gameManager.Player.transform;
@@ -77,9 +79,17 @@ public class EnemyController : BaseController
             }
 
             if (!isBoss) 
-            { 
-                if (distance > 4f) movementDirection = direction;
-                else movementDirection = Vector3.zero;
+            {
+                if (weaponHandler.AttackRange > 4f)
+                {
+                    if (distance > 4f) movementDirection = direction;
+                    else movementDirection = Vector3.zero;
+                }
+                else
+                {
+                    if(distance > weaponHandler.AttackRange) movementDirection = direction;
+                    else movementDirection = Vector3.zero;
+                }
             }
         }
     }
@@ -87,6 +97,9 @@ public class EnemyController : BaseController
     public override void Die()
     {
         rigidBody.gravityScale = 1f;
+
+        if (isBoss) itemManager.SpawnHPItem(transform.position + new Vector3(-1, 0));
+        else { if (Random.Range(0, 20) % 5 == 0) itemManager.SpawnHPItem(transform.position); }
         base.Die();
         enemyManager.RemoveEnemyOnDeath(this);
     }

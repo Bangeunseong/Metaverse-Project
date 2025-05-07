@@ -12,6 +12,7 @@ public class GameUI : BaseGameUI
     [SerializeField] private TextMeshProUGUI waveText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject heartPrefab;
+    [SerializeField] private Sprite fullHeart;
     [SerializeField] private Sprite halfHeart;
     [SerializeField] private Sprite emptyHeart;
     [SerializeField] private GameObject bossUI;
@@ -44,9 +45,12 @@ public class GameUI : BaseGameUI
         bool isHalfExists = currentHP % 2 != 0;
         int index;
 
-        if (isHalfExists) { hearts[currentHP / 2].sprite = halfHeart; index = currentHP / 2 + 1; }
+
+        if (isHalfExists) { index = currentHP / 2 + 1; }
         else index = currentHP / 2;
 
+        for (int i = 0; i < index - ((isHalfExists) ? 1 : 0); i++) hearts[i].sprite = fullHeart;
+        if (isHalfExists) hearts[currentHP / 2].sprite = halfHeart;
         for(int i = index; i < hearts.Count; i++) hearts[i].sprite = emptyHeart;
         hpLayoutAnimator.SetTrigger(isChanged);
     }

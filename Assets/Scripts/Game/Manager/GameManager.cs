@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private ResourceController playerResourceController;
     private GameUIManager gameUIManager;
     private EnemyManager enemyManager;
+    private ItemManager itemManager;
 
     public MiniGamePlayerController Player { get; private set; }
     public bool IsGameActive { get; private set; } = false;
@@ -37,9 +38,13 @@ public class GameManager : MonoBehaviour
         Player = FindFirstObjectByType<MiniGamePlayerController>();
         Player.Init(this);
 
+        // Initialize Item Manager
+        itemManager = FindFirstObjectByType<ItemManager>();
+        itemManager.Init(this);
+
         // Initialize Enemy Manager
         enemyManager = FindFirstObjectByType<EnemyManager>();
-        enemyManager.Init(this);
+        enemyManager.Init(this, itemManager);
 
         // Initialize UIManager and ResourceController of Player
         playerResourceController = Helper.GetComponent_Helper<ResourceController>(Player.gameObject);
@@ -69,20 +74,23 @@ public class GameManager : MonoBehaviour
     {
         // Stops Game
         IsGameActive = false;
-        
-        // Update Best score and UI
-        if (CurrentScore > MaxScore) { MaxScore = CurrentScore; }
-        GlobalGameManager.Instance.UpdateGameScore(CurrentScore);
-        gameUIManager.ChangeScoreInGameOverUI(CurrentScore, MaxScore);
 
-        // Update Coins
-        GlobalGameManager.Instance.UpdateCurrentCoin(CurrentScore / 10, true);
+        // Update Best score, coin, and UI
+        UpdateScoreNCoin_InGlobalGameManager();
+        gameUIManager.ChangeScoreInGameOverUI(CurrentScore, MaxScore);
 
         // Stop spawning enemies
         enemyManager.StopWave();
 
         // Change UI to GameOverUI
         gameUIManager.SetGameOver();
+    }
+
+    public void UpdateScoreNCoin_InGlobalGameManager()
+    {
+        if (CurrentScore > MaxScore) { MaxScore = CurrentScore; }
+        GlobalGameManager.Instance.UpdateGameScore(CurrentScore);
+        GlobalGameManager.Instance.UpdateCurrentCoin(CurrentScore / 10, true);
     }
 
     public void UpdateScore(int score)

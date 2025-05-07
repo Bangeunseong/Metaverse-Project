@@ -155,8 +155,8 @@ MonoBehaviour:
   delay: 1.5
   weaponSize: 0.6
   power: 2
-  speed: 2
-  attackRange: 8
+  speed: 4
+  attackRange: 12
   attackClip: {fileID: 8300000, guid: 65c9126adfdcc9d42a033053effbfa4e, type: 3}
   target:
     serializedVersion: 2

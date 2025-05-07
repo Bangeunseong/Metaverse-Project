@@ -24,6 +24,9 @@ public class GamePauseUI : BaseGameUI
 
     public void OnClickConfirmBtn()
     {
+        GameManager.Instance.UpdateScoreNCoin_InGlobalGameManager();
+
+        GlobalGameManager.Instance.IsGameNormallyEnded = true;
         SceneManager.LoadScene(GlobalGameManager.MainSceneName);
     }
 

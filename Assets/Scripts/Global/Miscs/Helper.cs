@@ -8,8 +8,7 @@ public class Helper
     public static T GetComponent_Helper<T>(GameObject obj) where T : Component
     {
         if(obj == null) { Debug.LogError("Fatal error! : GameObject is null!"); return null; }
-        T component = obj.GetComponent<T>();
-        if(component == null) { Debug.LogError($"Fatal error! : {typeof(T)} is missing in {obj.name}!"); return null; }
+        if(!obj.TryGetComponent<T>(out var component)) { Debug.LogError($"Fatal error! : {typeof(T)} is missing in {obj.name}!"); return null; }
         return component;
     }
 

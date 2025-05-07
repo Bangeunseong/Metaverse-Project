@@ -12,18 +12,20 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private List<Rect> spawnAreas;
     [SerializeField] private Transform bossSpawnPoint;
     [SerializeField] private Transform bossMovementTarget;
-    [SerializeField] private Color gizmoColor = new Color(1, 0, 0, .3f);
+    [SerializeField] private Color gizmoColor = new(1, 0, 0, .3f);
     [SerializeField] private float timeBetweenSpawns = 0.2f;
     [SerializeField] private float timeBetweenWaves = 1f;
     [SerializeField] private float timeBetweenBossWave = 3f;
 
     private GameManager gameManager;
-    private List<EnemyController> activeEnemies = new();
+    private ItemManager itemManager;
+    private readonly List<EnemyController> activeEnemies = new();
     private bool enemySpawnComplete;
 
-    public void Init(GameManager gameManager)
+    public void Init(GameManager gameManager, ItemManager itemManager)
     {
         this.gameManager = gameManager;
+        this.itemManager = itemManager;
     }
 
     public void StartWave(int waveCount)
@@ -44,7 +46,7 @@ public class EnemyManager : MonoBehaviour
         enemySpawnComplete = false;
         if(waveCount % 5 == 0) { 
             yield return new WaitForSeconds(timeBetweenBossWave + timeBetweenSpawns); 
-            SpawnBossEnemy(); 
+            SpawnBossEnemy(waveCount); 
         }
         else yield return new WaitForSeconds(timeBetweenWaves);
 
@@ -65,26 +67,25 @@ public class EnemyManager : MonoBehaviour
         GameObject randomPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
         Rect randomArea = spawnAreas[Random.Range(0, spawnAreas.Count)];
 
-        Vector2 randomPosition = new Vector2(
-            Random.Range(randomArea.xMin, randomArea.xMax),
-            Random.Range(randomArea.yMin, randomArea.yMax));
+        Vector2 randomPosition = new(Random.Range(randomArea.xMin, randomArea.xMax),
+                                     Random.Range(randomArea.yMin, randomArea.yMax));
 
         GameObject spawnEnemy = Instantiate(randomPrefab, new Vector3(randomPosition.x, randomPosition.y), Quaternion.identity);
         EnemyController enemyController = Helper.GetComponent_Helper<EnemyController>(spawnEnemy);
-        enemyController.Init(this, gameManager, bossMovementTarget);
+        enemyController.Init(this, gameManager, itemManager, bossMovementTarget);
 
         activeEnemies.Add(enemyController);
     }
 
-    private void SpawnBossEnemy()
+    private void SpawnBossEnemy(int waveCount)
     {
         if(!bossPrefabs.Any() || bossSpawnPoint == null) { Debug.LogWarning("Boss Prefabs or Spawn point are missing or not set up!"); return; }
 
-        GameObject randomPrefab = bossPrefabs[Random.Range(0, bossPrefabs.Count)];
+        GameObject randomPrefab = bossPrefabs[Mathf.Clamp(waveCount / 5 - 1, 0, bossPrefabs.Count - 1)];
 
         GameObject spawnBoss = Instantiate(randomPrefab, bossSpawnPoint.position, Quaternion.identity);
         EnemyController enemyController = Helper.GetComponent_Helper<EnemyController>(spawnBoss);
-        enemyController.Init(this, gameManager, bossMovementTarget);
+        enemyController.Init(this, gameManager, itemManager, bossMovementTarget);
 
         activeEnemies.Add(enemyController);
     }
@@ -103,8 +104,8 @@ public class EnemyManager : MonoBehaviour
         Gizmos.color = gizmoColor;
         foreach (var area in spawnAreas)
         {
-            Vector3 center = new Vector3(area.x + area.width / 2, area.y + area.height / 2);
-            Vector3 size = new Vector3(area.width, area.height);
+            Vector3 center = new(area.x + area.width / 2, area.y + area.height / 2);
+            Vector3 size = new(area.width, area.height);
 
             Gizmos.DrawCube(center, size);
         }

@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthChangeDelay: 0.4
-  damageClip: {fileID: 0}
+  damageClip: {fileID: 8300000, guid: 9fd00827abb2e844993b1b79c29d8d14, type: 3}
 --- !u!114 &7280715965253177342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -276,7 +276,8 @@ MonoBehaviour:
   drag: 3
   speed: 8
   followRange: 30
-  score: 10
+  score: 15
+  isBoss: 0
 --- !u!1 &3114850463072020551
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +289,7 @@ GameObject:
   - component: {fileID: 8000121609537227387}
   - component: {fileID: 5943380769621145354}
   - component: {fileID: 5538951338247139927}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
