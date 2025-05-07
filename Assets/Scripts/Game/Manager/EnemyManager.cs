@@ -22,12 +22,21 @@ public class EnemyManager : MonoBehaviour
     private readonly List<EnemyController> activeEnemies = new();
     private bool enemySpawnComplete;
 
+    /// <summary>
+    /// Initialize enemy manager
+    /// </summary>
+    /// <param name="gameManager"></param>
+    /// <param name="itemManager"></param>
     public void Init(GameManager gameManager, ItemManager itemManager)
     {
         this.gameManager = gameManager;
         this.itemManager = itemManager;
     }
 
+    /// <summary>
+    /// Starts enemy spawning wave
+    /// </summary>
+    /// <param name="waveCount"></param>
     public void StartWave(int waveCount)
     {
         if (waveCount <= 0) { gameManager.EndOfWave(); return; }
@@ -36,11 +45,19 @@ public class EnemyManager : MonoBehaviour
         waveRoutine = StartCoroutine(SpawnWave(waveCount));
     }
 
+    /// <summary>
+    /// Stops enemy spawning wave
+    /// </summary>
     public void StopWave()
     {
         StopAllCoroutines();
     }
 
+    /// <summary>
+    /// Coroutine of enemy spawn wave
+    /// </summary>
+    /// <param name="waveCount"></param>
+    /// <returns></returns>
     private IEnumerator SpawnWave(int waveCount)
     {
         enemySpawnComplete = false;
@@ -60,6 +77,9 @@ public class EnemyManager : MonoBehaviour
         enemySpawnComplete = true;
     }
 
+    /// <summary>
+    /// Spawns random enemy
+    /// </summary>
     private void SpawnRandomEnemy()
     {
         if (!enemyPrefabs.Any() || !spawnAreas.Any()) { Debug.LogWarning("Enemy Prefabs or Spawn Areas are missing or not set up!"); return; }
@@ -77,6 +97,10 @@ public class EnemyManager : MonoBehaviour
         activeEnemies.Add(enemyController);
     }
 
+    /// <summary>
+    /// Spawns boss enemy
+    /// </summary>
+    /// <param name="waveCount"></param>
     private void SpawnBossEnemy(int waveCount)
     {
         if(!bossPrefabs.Any() || bossSpawnPoint == null) { Debug.LogWarning("Boss Prefabs or Spawn point are missing or not set up!"); return; }
@@ -90,6 +114,10 @@ public class EnemyManager : MonoBehaviour
         activeEnemies.Add(enemyController);
     }
 
+    /// <summary>
+    /// Removes enemy which is already dead from the list
+    /// </summary>
+    /// <param name="enemy"></param>
     public void RemoveEnemyOnDeath(EnemyController enemy)
     {
         activeEnemies.Remove(enemy);
@@ -97,6 +125,9 @@ public class EnemyManager : MonoBehaviour
         if (enemySpawnComplete && !activeEnemies.Any()) gameManager.EndOfWave();
     }
 
+    /// <summary>
+    /// Draw Gizmos which are selected in scene
+    /// </summary>
     private void OnDrawGizmosSelected()
     {
         if (spawnAreas == null) return;

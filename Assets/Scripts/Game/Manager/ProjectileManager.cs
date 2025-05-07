@@ -24,6 +24,12 @@ public class ProjectileManager : MonoBehaviour
         if (Instance != this) Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Create Projectile when player or enemy shoots bullet
+    /// </summary>
+    /// <param name="weaponHandler"></param>
+    /// <param name="startPos"></param>
+    /// <param name="direction"></param>
     public void ShootBullet(RangeWeaponHandler weaponHandler, Vector2 startPos, Vector2 direction)
     {
         GameObject origin = projectilePrefabs[weaponHandler.BulletIndex];
@@ -33,6 +39,11 @@ public class ProjectileManager : MonoBehaviour
         projectileController.Init(direction, weaponHandler, this);
     }
 
+    /// <summary>
+    /// Create Particles when projectile hits something
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="weaponHandler"></param>
     public void CreateImpactParticlesAtPosition(Vector3 position, RangeWeaponHandler weaponHandler)
     {
         impactParticleSystem.transform.position = position;

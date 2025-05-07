@@ -38,6 +38,9 @@ public class WeaponHandler : MonoBehaviour
 
     protected virtual void Start() { }
 
+    /// <summary>
+    /// Called when player or enemy attacks
+    /// </summary>
     public virtual void Attack()
     {
         AttackAnimation();
@@ -45,11 +48,18 @@ public class WeaponHandler : MonoBehaviour
         if (attackClip != null) { SoundManager.PlayClip(attackClip); }
     }
 
+    /// <summary>
+    /// Plays attack animation when player or enemy attacks
+    /// </summary>
     public void AttackAnimation()
     {
         animator.SetTrigger(IsAttack);
     }
 
+    /// <summary>
+    /// Rotate weapon sprite when rotation is over 180 degrees.
+    /// </summary>
+    /// <param name="isLeft"></param>
     public virtual void Rotate(bool isLeft)
     {
         weaponRenderer.flipY = isLeft;

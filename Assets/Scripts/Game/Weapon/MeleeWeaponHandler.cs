@@ -13,6 +13,9 @@ public class MeleeWeaponHandler : WeaponHandler
         collideBoxSize *= WeaponSize;
     }
 
+    /// <summary>
+    /// Called when player or enemy attacks
+    /// </summary>
     public override void Attack()
     {
         base.Attack();
@@ -26,6 +29,10 @@ public class MeleeWeaponHandler : WeaponHandler
         resourceController.ChangeHealth(-Power);
     }
 
+    /// <summary>
+    /// Rotate when player's or enemy's lookAt direction changed
+    /// </summary>
+    /// <param name="isLeft"></param>
     public override void Rotate(bool isLeft)
     {
         // base.Rotate(isLeft);

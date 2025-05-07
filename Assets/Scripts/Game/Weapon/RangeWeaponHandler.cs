@@ -30,6 +30,9 @@ public class RangeWeaponHandler : WeaponHandler
         projectileManager = ProjectileManager.Instance;
     }
 
+    /// <summary>
+    /// Creates projectile when attack is enabled by player input or controller in enemy
+    /// </summary>
     public override void Attack()
     {
         base.Attack();
@@ -49,11 +52,22 @@ public class RangeWeaponHandler : WeaponHandler
         }
     }
 
+    /// <summary>
+    /// Create projectile
+    /// </summary>
+    /// <param name="lookDirection"></param>
+    /// <param name="angle"></param>
     private void CreateProjectile(Vector2 lookDirection, float angle)
     {
         projectileManager.ShootBullet(this, projectileSpawnPosition.position, RotateVector2(lookDirection, angle));
     }
 
+    /// <summary>
+    /// Rotates projectile by movement direction
+    /// </summary>
+    /// <param name="v"></param>
+    /// <param name="degree"></param>
+    /// <returns></returns>
     private static Vector2 RotateVector2(Vector2 v, float degree)
     {
         return Quaternion.Euler(0, 0, degree) * v;

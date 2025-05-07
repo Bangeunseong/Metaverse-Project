@@ -24,6 +24,13 @@ public class EnemyController : BaseController
 
     public int Score { get { return score; } }
 
+    /// <summary>
+    /// Initialize controller of enemy(Set target of enemy)
+    /// </summary>
+    /// <param name="enemyManager"></param>
+    /// <param name="gameManager"></param>
+    /// <param name="itemManager"></param>
+    /// <param name="bossMovementTarget"></param>
     public void Init(EnemyManager enemyManager, GameManager gameManager, ItemManager itemManager, Transform bossMovementTarget)
     {
         this.enemyManager = enemyManager;
@@ -63,6 +70,9 @@ public class EnemyController : BaseController
         }
     }
 
+    /// <summary>
+    /// Handle movement direction of enemy by type of enemy(Suicide Bomber, Close Range Enemy, Long Range Enemy, Boss)
+    /// </summary>
     protected override void HandleAction()
     {
         base.HandleAction();
@@ -112,6 +122,9 @@ public class EnemyController : BaseController
         }
     }
 
+    /// <summary>
+    /// Called when enemy dies
+    /// </summary>
     public override void Die()
     {
         rigidBody.gravityScale = 1f;
@@ -122,17 +135,29 @@ public class EnemyController : BaseController
         enemyManager.RemoveEnemyOnDeath(this);
     }
 
+    /// <summary>
+    /// Calculates distance from the target
+    /// </summary>
+    /// <returns>Returns distance from the target</returns>
     protected float DistanceToTarget()
     {
         if (isBoss) return Vector3.Distance(transform.position, bossMovementTarget.position);
         return Vector3.Distance(transform.position, target.position);
     }
 
+    /// <summary>
+    /// Calculate direction to target
+    /// </summary>
+    /// <returns>Returns direction to target</returns>
     protected Vector2 DirectionToTarget()
     {
         return (target.position - transform.position).normalized;
     }
 
+    /// <summary>
+    /// Calculate movement velocity and direction of enemy
+    /// </summary>
+    /// <param name="direction"></param>
     private void Movement(Vector2 direction)
     {
         if (rigidBody.velocity.magnitude > statHandler.Speed)
@@ -150,6 +175,10 @@ public class EnemyController : BaseController
         else rigidBody.drag = drag;
     }
 
+    /// <summary>
+    /// Collision Resolution of enemy
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (weaponHandler != null) return;

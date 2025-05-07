@@ -32,9 +32,8 @@ public class ItemController : MonoBehaviour
     /// <summary>
     /// Initialize Projectile GameObject.
     /// </summary>
-    /// <param name="direction"></param>
-    /// <param name="weaponHandler"></param>
-    /// <param name="projectileManager"></param>
+    /// <param name="gameManager"></param>
+    /// <param name="itemManager"></param>
     public void Init(GameManager gameManager, ItemManager itemManager)
     {
         this.itemManager = itemManager;
@@ -45,7 +44,7 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// Update is called every time
+    /// Update is called every frames per sec
     /// </summary>
     private void Update()
     {
@@ -59,6 +58,9 @@ public class ItemController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// FixedUpdate is called every fixed frames per sec
+    /// </summary>
     private void FixedUpdate()
     {
         if (!gameManager.IsGameActive) { rigidBody.velocity = Vector3.zero; return; }
@@ -87,6 +89,10 @@ public class ItemController : MonoBehaviour
         else rigidBody.drag = drag;
     }
 
+    /// <summary>
+    /// Calculate direction to target
+    /// </summary>
+    /// <returns>Returns direction to target in Vector2 type</returns>
     protected Vector2 DirectionToTarget()
     {
         return (target.position - transform.position).normalized;

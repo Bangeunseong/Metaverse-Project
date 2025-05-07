@@ -27,11 +27,19 @@ public class ItemManager : MonoBehaviour
         if (Instance != this) Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Initialize item manager
+    /// </summary>
+    /// <param name="gameManager"></param>
     public void Init(GameManager gameManager)
     {
         this.gameManager = gameManager;
     }
 
+    /// <summary>
+    /// Spawn HP recovery item
+    /// </summary>
+    /// <param name="startPos"></param>
     public void SpawnHPItem(Vector2 startPos)
     {
         int randomIndex = Random.Range(0, recoverItemPrefabs.Count());
@@ -43,6 +51,10 @@ public class ItemManager : MonoBehaviour
         controller.Init(gameManager, this);
     }
 
+    /// <summary>
+    /// Create Particle system when item is destroyed
+    /// </summary>
+    /// <param name="position"></param>
     public void CreateImpactParticlesAtPosition(Vector3 position)
     {
         impactParticleSystem.transform.position = position;
