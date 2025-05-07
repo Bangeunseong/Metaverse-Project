@@ -25,7 +25,7 @@ public class ProjectileManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Create Projectile when player or enemy shoots bullet
+    /// Create Projectile when player or enemy shoots a bullet
     /// </summary>
     /// <param name="weaponHandler"></param>
     /// <param name="startPos"></param>
@@ -40,7 +40,7 @@ public class ProjectileManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Create Particles when projectile hits something
+    /// Create Particles when a projectile hits something
     /// </summary>
     /// <param name="position"></param>
     /// <param name="weaponHandler"></param>

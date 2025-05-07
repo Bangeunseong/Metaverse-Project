@@ -52,7 +52,7 @@ public class ItemManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Create Particle system when item is destroyed
+    /// Create a Particle system when item is destroyed
     /// </summary>
     /// <param name="position"></param>
     public void CreateImpactParticlesAtPosition(Vector3 position)

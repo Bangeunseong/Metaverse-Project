@@ -30,17 +30,12 @@ public class MeleeWeaponHandler : WeaponHandler
     }
 
     /// <summary>
-    /// Rotate when player's or enemy's lookAt direction changed
+    /// Rotate when a player's or enemy's lookAt direction changed
     /// </summary>
     /// <param name="isLeft"></param>
     public override void Rotate(bool isLeft)
     {
         // base.Rotate(isLeft);
-
-        if (isLeft)
-        {
-            transform.eulerAngles = new Vector3(0, 180, 0);
-        }
-        else transform.eulerAngles = new Vector3(0, 0, 0);
+        transform.eulerAngles = isLeft ? new Vector3(0, 180, 0) : new Vector3(0, 0, 0);
     }
 }

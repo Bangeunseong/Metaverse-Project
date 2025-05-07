@@ -126,7 +126,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Draw Gizmos which are selected in scene
+    /// Draw Gizmos which are selected in a scene
     /// </summary>
     private void OnDrawGizmosSelected()
     {

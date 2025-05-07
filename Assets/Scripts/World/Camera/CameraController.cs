@@ -50,7 +50,7 @@ public class CameraController : MonoBehaviour
     }
 
     /// <summary>
-    /// Set Camera Boundary using tilemap
+    /// Set Camera Boundary using a tilemap
     /// </summary>
     /// <param name="tilemap"></param>
     public void SetCameraBoundsFromTilemap(Tilemap tilemap)
@@ -67,7 +67,7 @@ public class CameraController : MonoBehaviour
     }
 
     /// <summary>
-    /// Calculate Camera Position depends on boundary
+    /// Calculate Camera Position depends on the boundary
     /// </summary>
     private void ChangeCamPositionNZoom()
     {

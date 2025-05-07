@@ -52,7 +52,7 @@ public class MiniGamePlayerController : BaseController
     }
 
     /// <summary>
-    /// Update is called every frames per secs
+    /// Update is called every frame per secs
     /// </summary>
     protected override void Update()
     {
@@ -72,7 +72,7 @@ public class MiniGamePlayerController : BaseController
     }
     
     /// <summary>
-    /// Called when player character is dead
+    /// Called when the player character is dead
     /// </summary>
     public override void Die()
     {
@@ -105,7 +105,7 @@ public class MiniGamePlayerController : BaseController
     }
     
     /// <summary>
-    /// Changes character data(Animation, Sprite, Particle Color)
+    /// Changes character data (Animation, Sprite, Particle Color)
     /// </summary>
     /// <param name="characterData"></param>
     private void ChangeCharacter(CharacterData characterData)
@@ -152,9 +152,7 @@ public class MiniGamePlayerController : BaseController
         Vector2 worldPos = cam.ScreenToWorldPoint(mousePosition);
 
         lookAtDirection = (worldPos - (Vector2)transform.position);
-
-        if (lookAtDirection.magnitude < .9f) { lookAtDirection = Vector2.zero; }
-        else { lookAtDirection = lookAtDirection.normalized; }
+        lookAtDirection = lookAtDirection.magnitude < .9f ? Vector2.zero : lookAtDirection.normalized;
     }
 
     void OnFire(InputValue inputValue)

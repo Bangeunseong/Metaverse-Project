@@ -22,7 +22,7 @@ public class ItemController : MonoBehaviour
     public bool fxOnDestroy = true;
 
     /// <summary>
-    /// Awake is called once when scripts is being loaded.
+    /// Awake is called once when scripts are being loaded.
     /// </summary>
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// Update is called every frames per sec
+    /// Update is called every frame per sec
     /// </summary>
     private void Update()
     {
@@ -59,7 +59,7 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// FixedUpdate is called every fixed frames per sec
+    /// FixedUpdate is called every fixed frame per sec
     /// </summary>
     private void FixedUpdate()
     {
@@ -90,10 +90,10 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// Calculate direction to target
+    /// Calculate a direction to target
     /// </summary>
-    /// <returns>Returns direction to target in Vector2 type</returns>
-    protected Vector2 DirectionToTarget()
+    /// <returns>Returns a direction to target in Vector2 type</returns>
+    private Vector2 DirectionToTarget()
     {
         return (target.position - transform.position).normalized;
     }
@@ -120,7 +120,7 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// Destroy Projectile when has impact with wall or enemy, also show sfx if createFx is true.
+    /// Destroy Projectile when has impact with a wall or enemy, also show sfx if createFx is true.
     /// </summary>
     /// <param name="position"></param>
     /// <param name="createFx"></param>

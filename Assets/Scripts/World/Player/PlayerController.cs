@@ -50,11 +50,9 @@ public class PlayerController : BaseController
     {
         Vector2 mousePosition = inputValue.Get<Vector2>();
         Vector2 worldPos = cam.ScreenToWorldPoint(mousePosition);
-        
+
         lookAtDirection = (worldPos - (Vector2)transform.position);
-        
-        if (lookAtDirection.magnitude < .9f) { lookAtDirection = Vector2.zero; }
-        else { lookAtDirection = lookAtDirection.normalized; }
+        lookAtDirection = lookAtDirection.magnitude < .9f ? Vector2.zero : lookAtDirection.normalized;
     }
 
     void OnInteract(InputValue inputValue)

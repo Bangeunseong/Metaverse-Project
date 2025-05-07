@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GameUIManager : MonoBehaviour
@@ -67,7 +65,7 @@ public class GameUIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Change UI when wave is ended
+    /// Change UI when the wave is ended
     /// </summary>
     /// <param name="waveIndex"></param>
     public void ChangeWave(int waveIndex)
@@ -76,7 +74,7 @@ public class GameUIManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Change Score UI when enemy dies
+    /// Change Score UI when the enemy dies
     /// </summary>
     /// <param name="score"></param>
     public void ChangeScoreInGameUI(int score)
@@ -108,7 +106,6 @@ public class GameUIManager : MonoBehaviour
     /// Change HP sprites using currentHP and maxHP
     /// </summary>
     /// <param name="currentHP"></param>
-    /// <param name="maxHP"></param>
     public void ChangePlayerHP(float currentHP)
     {
         gameUI.UpdateHPSprite(Mathf.CeilToInt(currentHP));

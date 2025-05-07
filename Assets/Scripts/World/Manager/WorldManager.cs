@@ -61,7 +61,7 @@ public class WorldManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Go to base world
+    /// Go to a base world
     /// </summary>
     public void StartWorld() { IsWorldActive = true;  uiManager.GoToWorld();  }
 

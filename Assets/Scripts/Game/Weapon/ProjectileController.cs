@@ -17,7 +17,7 @@ public class ProjectileController : MonoBehaviour
     public bool fxOnDestroy = true;
 
     /// <summary>
-    /// Awake is called once when scripts is being loaded.
+    /// Awake is called once when scripts are being loaded.
     /// </summary>
     private void Awake()
     {
@@ -88,7 +88,7 @@ public class ProjectileController : MonoBehaviour
     }
 
     /// <summary>
-    /// Destroy Projectile when has impact with wall or enemy, also show sfx if createFx is true.
+    /// Destroy Projectile when has impact with a wall or enemy, also show sfx if createFx is true.
     /// </summary>
     /// <param name="position"></param>
     /// <param name="createFx"></param>

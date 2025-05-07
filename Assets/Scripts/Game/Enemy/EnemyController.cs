@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : BaseController
@@ -25,7 +23,7 @@ public class EnemyController : BaseController
     public int Score { get { return score; } }
 
     /// <summary>
-    /// Initialize controller of enemy(Set target of enemy)
+    /// Initialize controller of enemy (Set target of an enemy)
     /// </summary>
     /// <param name="enemyManager"></param>
     /// <param name="gameManager"></param>
@@ -49,12 +47,10 @@ public class EnemyController : BaseController
     protected override void Update()
     {
         base.Update();
-        
-        if(weaponHandler == null)
-        {
-            timePassAfterSpawn += Time.deltaTime;
-            if (timePassAfterSpawn > blowUpTimer) Die();
-        }
+
+        if (weaponHandler != null) return;
+        timePassAfterSpawn += Time.deltaTime;
+        if (timePassAfterSpawn > blowUpTimer) Die();
     }
 
     protected override void FixedUpdate()
@@ -71,7 +67,7 @@ public class EnemyController : BaseController
     }
 
     /// <summary>
-    /// Handle movement direction of enemy by type of enemy(Suicide Bomber, Close Range Enemy, Long Range Enemy, Boss)
+    /// Handle a movement direction of an enemy by type of enemy (Suicide Bomber, Close Range Enemy, Long Range Enemy, Boss)
     /// </summary>
     protected override void HandleAction()
     {
@@ -123,7 +119,7 @@ public class EnemyController : BaseController
     }
 
     /// <summary>
-    /// Called when enemy dies
+    /// Called when the enemy dies
     /// </summary>
     public override void Die()
     {
@@ -146,9 +142,9 @@ public class EnemyController : BaseController
     }
 
     /// <summary>
-    /// Calculate direction to target
+    /// Calculate a direction to target
     /// </summary>
-    /// <returns>Returns direction to target</returns>
+    /// <returns>Returns a direction to target</returns>
     protected Vector2 DirectionToTarget()
     {
         return (target.position - transform.position).normalized;
@@ -176,7 +172,7 @@ public class EnemyController : BaseController
     }
 
     /// <summary>
-    /// Collision Resolution of enemy
+    /// Collision Resolution of an enemy
     /// </summary>
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)

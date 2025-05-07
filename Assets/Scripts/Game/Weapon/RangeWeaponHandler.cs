@@ -31,7 +31,7 @@ public class RangeWeaponHandler : WeaponHandler
     }
 
     /// <summary>
-    /// Creates projectile when attack is enabled by player input or controller in enemy
+    /// Creates projectile when attack is enabled by player input or controller in an enemy
     /// </summary>
     public override void Attack()
     {
