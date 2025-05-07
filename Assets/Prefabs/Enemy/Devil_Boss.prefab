@@ -277,6 +277,10 @@ MonoBehaviour:
   followRange: 30
   score: 250
   isBoss: 1
+  blowUpTimer: 2
+  levelCollisionLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &6708458589547553451
 GameObject:
   m_ObjectHideFlags: 0

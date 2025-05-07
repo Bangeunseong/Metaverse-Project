@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 
@@ -12,4 +10,5 @@ using UnityEngine;
     public AnimationClip idleClip;
     public AnimationClip damageClip;
     public AnimationClip moveClip;
+    public Color trailColor;
 }

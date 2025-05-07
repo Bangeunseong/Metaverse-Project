@@ -5131,7 +5131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
-  speed: 2
+  speed: 4
 --- !u!114 &773914004414050071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5160,12 +5160,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPivot: {fileID: 8047488416912499827}
   weaponPrefab: {fileID: -5396695382130897714, guid: cbb5a78fa1d4a84428245fe113b42f04, type: 3}
-  moveForce: 15
+  moveForce: 6
   drag: 3
-  speed: 12
+  minimumApproachDistance: 3
   followRange: 30
   score: 20
   isBoss: 0
+  blowUpTimer: 2
 --- !u!1 &6708458589547553451
 GameObject:
   m_ObjectHideFlags: 0

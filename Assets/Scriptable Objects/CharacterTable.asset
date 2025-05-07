@@ -19,27 +19,32 @@ MonoBehaviour:
     idleClip: {fileID: 7400000, guid: df66d45e22502cf44a5cb03688f4bd25, type: 2}
     damageClip: {fileID: 7400000, guid: a1c37991d7360cf48b1a24a47744135d, type: 2}
     moveClip: {fileID: 7400000, guid: c931c36a3453a6a4fbac04bbb0991bb4, type: 2}
+    trailColor: {r: 0.91372555, g: 0.4039216, b: 0.53333336, a: 1}
   - id: 1
     characterSprite: {fileID: 21300000, guid: fd05d94a9d09d6b41b32b0d3c9267cf0, type: 3}
     controller: {fileID: 9100000, guid: 694e37fa72942d040b88de54a0aa57f7, type: 2}
     idleClip: {fileID: 7400000, guid: 2bc0cba8fb68e5b4fadc2ac4d4c81812, type: 2}
     damageClip: {fileID: 7400000, guid: 3a920e25f50289249a96c6520b9489a6, type: 2}
     moveClip: {fileID: 7400000, guid: 4f6f18a377c135e45bf2713377319be7, type: 2}
+    trailColor: {r: 0.9333334, g: 0.5568628, b: 0.18039216, a: 1}
   - id: 2
     characterSprite: {fileID: 21300000, guid: 2d732afd517de744eaa0b235f629bbd9, type: 3}
     controller: {fileID: 9100000, guid: 9ba3be7705952a442b063f07573a311c, type: 2}
     idleClip: {fileID: 7400000, guid: cc3923dfcce052b428225e53edd082ee, type: 2}
     damageClip: {fileID: 7400000, guid: 0b2dd7895925d58438e552d0e868ec18, type: 2}
     moveClip: {fileID: 7400000, guid: b5482e3fc620b204e91ac16671de361e, type: 2}
+    trailColor: {r: 0.9686275, g: 0.7843138, b: 0.28235295, a: 0}
   - id: 3
     characterSprite: {fileID: 21300000, guid: 5fdbc410f0cc16948a6d7ca96660d78d, type: 3}
     controller: {fileID: 9100000, guid: 719fb492d7a329c45a3f642e2ad1d3af, type: 2}
     idleClip: {fileID: 7400000, guid: c2ed5311e45a776429703891f74dfc19, type: 2}
     damageClip: {fileID: 7400000, guid: 851b35e0d2e960d43a57da8b77ab123a, type: 2}
     moveClip: {fileID: 7400000, guid: 436bf4a2f68beba4a82256d6a5904ee6, type: 2}
+    trailColor: {r: 0.2784314, g: 0.6117647, b: 0.5568628, a: 0}
   - id: 4
     characterSprite: {fileID: 21300000, guid: e1f2001fb2848e848b4cd57b28c59ece, type: 3}
     controller: {fileID: 9100000, guid: d4b611e92ffd84042a04bfd6a313f6bb, type: 2}
     idleClip: {fileID: 7400000, guid: 7ec76110460069d408a113d71f9c4c56, type: 2}
     damageClip: {fileID: 7400000, guid: 8b7a6e3d6ebb1a548a25bf64f3c0072a, type: 2}
     moveClip: {fileID: 7400000, guid: 781b1ef64e08d14408540aed98bfcf59, type: 2}
+    trailColor: {r: 0.2784314, g: 0.6156863, b: 0.28235295, a: 0}

@@ -272,12 +272,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponPivot: {fileID: 8047488416912499827}
   weaponPrefab: {fileID: 2984066914620241954, guid: bee42029ef1bd524eb79d4f9fd66e109, type: 3}
-  moveForce: 12
+  moveForce: 6
   drag: 3
-  speed: 8
+  minimumApproachDistance: 3
   followRange: 30
   score: 15
   isBoss: 0
+  blowUpTimer: 2
 --- !u!1 &3114850463072020551
 GameObject:
   m_ObjectHideFlags: 0

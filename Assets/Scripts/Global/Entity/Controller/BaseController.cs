@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class BaseController : MonoBehaviour
 {
+    [Header("Weapon Settings")]
     [SerializeField] private Transform weaponPivot;
     [SerializeField] private WeaponHandler weaponPrefab;
     protected CharacterData characterData;

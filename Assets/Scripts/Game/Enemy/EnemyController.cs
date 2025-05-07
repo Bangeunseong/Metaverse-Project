@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class EnemyController : BaseController
 {
-    [Range(5f, 15f)][SerializeField] private float moveForce = 10f;
+    [Header("Movement Stats")]
+    [Range(5f, 30f)][SerializeField] private float moveForce = 10f;
     [Range(0f, 10f)][SerializeField] private float drag = 3f;
-    [Range(0f, 15f)][SerializeField] private float speed = 8f;
+    [Range(1f, 10f)][SerializeField] private float minimumApproachDistance = 3f;
     [SerializeField] private float followRange = 30f;
+
+    [Header("Enemy Behavior Settings")]
     [SerializeField] private int score;
     [SerializeField] private bool isBoss = false;
+    [SerializeField] private float blowUpTimer = 2f;
 
     private EnemyManager enemyManager;
     private GameManager gameManager;
     private ItemManager itemManager;
     private Transform target;
     private Transform bossMovementTarget;
+    private float timePassAfterSpawn = 0f;
 
     public int Score { get { return score; } }
 
@@ -32,18 +37,29 @@ public class EnemyController : BaseController
     protected override void Start()
     {
         rigidBody.drag = drag;
-        statHandler.Speed = speed;
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        
+        if(weaponHandler == null)
+        {
+            timePassAfterSpawn += Time.deltaTime;
+            if (timePassAfterSpawn > blowUpTimer) Die();
+        }
     }
 
     protected override void FixedUpdate()
     {
         if (!gameManager.IsGameActive) { rigidBody.velocity = Vector3.zero; return; }
 
-        if(!isBoss) Movement(movementDirection);
-        else { 
+        if (!isBoss) Movement(movementDirection);
+        else
+        {
             float distance = DistanceToTarget();
             if (distance > 0.1f)
-                transform.position = Vector2.Lerp(transform.position, bossMovementTarget.position, Time.fixedDeltaTime * speed);
+                transform.position = Vector2.Lerp(transform.position, bossMovementTarget.position, Time.fixedDeltaTime * statHandler.Speed);
         }
     }
 
@@ -51,7 +67,7 @@ public class EnemyController : BaseController
     {
         base.HandleAction();
 
-        if (weaponHandler == null || target == null)
+        if (target == null)
         {
             if (!movementDirection.Equals(Vector2.zero)) movementDirection = Vector2.zero;
             return;
@@ -65,6 +81,9 @@ public class EnemyController : BaseController
         if (distance <= followRange)
         {
             lookAtDirection = direction;
+
+            if (weaponHandler == null) { movementDirection = direction; return; }
+
             if (distance < weaponHandler.AttackRange)
             {
                 int layerMaskTarget = weaponHandler.target;
@@ -78,18 +97,17 @@ public class EnemyController : BaseController
                 }
             }
 
-            if (!isBoss) 
+            if (isBoss) return;
+
+            if (weaponHandler.AttackRange > minimumApproachDistance)
             {
-                if (weaponHandler.AttackRange > 4f)
-                {
-                    if (distance > 4f) movementDirection = direction;
-                    else movementDirection = Vector3.zero;
-                }
-                else
-                {
-                    if(distance > weaponHandler.AttackRange) movementDirection = direction;
-                    else movementDirection = Vector3.zero;
-                }
+                if (distance > minimumApproachDistance) movementDirection = direction;
+                else movementDirection = Vector3.zero;
+            }
+            else
+            {
+                if (distance > weaponHandler.AttackRange) movementDirection = direction;
+                else movementDirection = Vector3.zero;
             }
         }
     }
@@ -103,7 +121,7 @@ public class EnemyController : BaseController
         base.Die();
         enemyManager.RemoveEnemyOnDeath(this);
     }
-    
+
     protected float DistanceToTarget()
     {
         if (isBoss) return Vector3.Distance(transform.position, bossMovementTarget.position);
@@ -114,12 +132,12 @@ public class EnemyController : BaseController
     {
         return (target.position - transform.position).normalized;
     }
-    
+
     private void Movement(Vector2 direction)
     {
         if (rigidBody.velocity.magnitude > statHandler.Speed)
         {
-            rigidBody.velocity *= (statHandler.Speed / rigidBody.velocity.magnitude);
+            rigidBody.velocity = rigidBody.velocity.normalized * statHandler.Speed;
         }
 
         if (direction.magnitude > 0)
@@ -130,5 +148,16 @@ public class EnemyController : BaseController
             rigidBody.drag = dot >= 0 ? drag : 0;
         }
         else rigidBody.drag = drag;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (weaponHandler != null) return;
+        if((1 << target.gameObject.layer & (1 << collision.gameObject.layer)) != 0)
+        {
+            ResourceController controller = Helper.GetComponent_Helper<ResourceController>(collision.gameObject);
+            controller.ChangeHealth(-2);
+            Die();
+        }
     }
 }
