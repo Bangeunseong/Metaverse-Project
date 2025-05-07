@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BackgroundLooper : MonoBehaviour
@@ -27,12 +24,6 @@ public class BackgroundLooper : MonoBehaviour
     void Start()
     {
         halfWidth = boxCollider.bounds.size.x / 2;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void FixedUpdate()

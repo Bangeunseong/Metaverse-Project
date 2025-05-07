@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [Range(1f, 5f)][SerializeField] private float duration = 1f;
-    [Range(0f, 5f)][SerializeField] private float speed = 2f;
-    [Range(0.1f, 2f)][SerializeField] private float moveForce = 1f;
-    [Range(0f, 3f)][SerializeField] private float drag = 1f;
-    [Range(1, 5)][SerializeField]private int recoverAmount = 1;
+    [Range(1f, 5f)] [SerializeField] private float duration = 1f;
+    [Range(0f, 5f)] [SerializeField] private float speed = 2f;
+    [Range(0.1f, 2f)] [SerializeField] private float moveForce = 1f;
+    [Range(0f, 3f)] [SerializeField] private float drag = 1f;
+    [Range(1, 5)] [SerializeField] private int recoverAmount = 1;
     [SerializeField] private LayerMask levelCollisionLayer;
-    
+
     private Rigidbody2D rigidBody;
     private Transform target;
     private ItemManager itemManager;
@@ -48,7 +48,10 @@ public class ItemController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (!gameManager.IsGameActive) { return; }
+        if (!gameManager.IsGameActive)
+        {
+            return;
+        }
 
         currentDuration += Time.deltaTime;
 
@@ -63,7 +66,11 @@ public class ItemController : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        if (!gameManager.IsGameActive) { rigidBody.velocity = Vector3.zero; return; }
+        if (!gameManager.IsGameActive)
+        {
+            rigidBody.velocity = Vector3.zero;
+            return;
+        }
 
         Movement(DirectionToTarget());
     }
@@ -103,7 +110,7 @@ public class ItemController : MonoBehaviour
     /// </summary>
     /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
-    {   
+    {
         if ((levelCollisionLayer.value & (1 << collision.gameObject.layer)) != 0)
         {
             DestroyProjectile(collision.ClosestPoint(transform.position) - direction * 0.2f, fxOnDestroy);
@@ -111,8 +118,9 @@ public class ItemController : MonoBehaviour
         else if ((1 << collision.gameObject.layer & (1 << target.gameObject.layer)) != 0)
         {
             Debug.Log(collision.gameObject.name);
-            ResourceController resourceController = Helper.GetComponent_Helper<ResourceController>(collision.gameObject);
-            
+            ResourceController resourceController =
+                Helper.GetComponent_Helper<ResourceController>(collision.gameObject);
+
             if (resourceController == null) return;
             if (resourceController.ChangeHealth(recoverAmount))
                 DestroyProjectile(collision.ClosestPoint(transform.position), fxOnDestroy);
